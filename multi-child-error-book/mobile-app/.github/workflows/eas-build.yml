@@ -1,0 +1,46 @@
+name: EAS Build
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+        cache-dependency-path: multi-child-error-book/mobile-app/package-lock.json
+    
+    - name: Install dependencies
+      run: |
+        cd multi-child-error-book/mobile-app
+        npm ci
+    
+    - name: Install EAS CLI
+      run: |
+        cd multi-child-error-book/mobile-app
+        npm install -g eas-cli
+    
+    - name: Login to Expo
+      run: |
+        cd multi-child-error-book/mobile-app
+        echo "${{ secrets.EXPO_TOKEN }}" | eas login --token-stdin
+    
+    - name: Build Android
+      run: |
+        cd multi-child-error-book/mobile-app
+        eas build --platform android --non-interactive
+        
+    - name: Build iOS
+      run: |
+        cd multi-child-error-book/mobile-app
+        eas build --platform ios --non-interactive
