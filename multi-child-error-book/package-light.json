@@ -1,0 +1,25 @@
+{
+  "name": "multi-child-error-book",
+  "version": "1.0.0",
+  "description": "智能错题集APP - 面向多子女家庭 (轻量版)",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node --max-old-space-size=512 src/server.js",
+    "dev": "nodemon src/server.js",
+    "test": "jest"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^16.6.1",
+    "express": "^4.22.1",
+    "express-rate-limit": "^8.2.1",
+    "helmet": "^7.2.0",
+    "mongodb": "^7.1.0",
+    "mongoose": "^7.8.9",
+    "morgan": "^1.10.1",
+    "multer": "^1.4.5-lts.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

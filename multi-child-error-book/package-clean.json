@@ -1,0 +1,43 @@
+{
+  "name": "multi-child-error-book",
+  "version": "1.0.0",
+  "description": "智能错题集APP - 面向多子女家庭",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "test": "jest",
+    "build": "npm run build-mobile",
+    "build-mobile": "cd mobile-app && npm install && npm run build",
+    "deploy": "bash deploy-to-aliyun.sh"
+  },
+  "dependencies": {
+    "ali-oss": "^6.17.1",
+    "axios": "^1.13.5",
+    "bcrypt": "^5.1.0",
+    "cors": "^2.8.6",
+    "dotenv": "^16.6.1",
+    "express": "^4.22.1",
+    "express-rate-limit": "^8.2.1",
+    "helmet": "^7.2.0",
+    "jimp": "^1.6.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^7.1.0",
+    "mongoose": "^7.8.9",
+    "morgan": "^1.10.1",
+    "multer": "^1.4.5-lts.1",
+    "node-cron": "^3.0.3",
+    "pdfkit": "^0.13.0",
+    "sharp": "^0.32.6",
+    "tesseract.js": "^4.1.0",
+    "winston": "^3.19.0"
+  },
+  "devDependencies": {
+    "jest": "^29.6.2",
+    "nodemon": "^3.0.1",
+    "supertest": "^6.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

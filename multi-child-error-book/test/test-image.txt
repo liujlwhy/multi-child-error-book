@@ -1,0 +1,2 @@
+This is a test image file for performance testing.
+In real usage, this would be an actual image buffer.

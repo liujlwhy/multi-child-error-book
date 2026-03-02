@@ -1,0 +1,30 @@
+
+> multi-child-error-book@1.0.0 start
+> node --max-old-space-size=512 src/server.js
+
+node:internal/modules/cjs/loader:1424
+  throw err;
+  ^
+
+Error: Cannot find module 'express-validator'
+Require stack:
+- /home/admin/.openclaw/workspace/multi-child-error-book/src/routes/children.js
+- /home/admin/.openclaw/workspace/multi-child-error-book/src/server.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1421:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1059:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1064:22)
+    at Module._load (node:internal/modules/cjs/loader:1227:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.require (node:internal/modules/cjs/loader:1504:12)
+    at require (node:internal/modules/helpers:152:16)
+    at Object.<anonymous> (/home/admin/.openclaw/workspace/multi-child-error-book/src/routes/children.js:3:43)
+    at Module._compile (node:internal/modules/cjs/loader:1761:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/home/admin/.openclaw/workspace/multi-child-error-book/src/routes/children.js',
+    '/home/admin/.openclaw/workspace/multi-child-error-book/src/server.js'
+  ]
+}
+
+Node.js v24.13.0
