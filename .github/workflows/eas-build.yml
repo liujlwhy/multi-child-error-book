@@ -1,0 +1,55 @@
+name: EAS Build
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          
+      - name: Install Expo CLI
+        run: npm install -g @expo/cli
+        
+      - name: Navigate to mobile-app directory
+        run: cd mobile-app
+        
+      - name: Setup EAS credentials
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+        run: |
+          cd mobile-app
+          if [ -z "$EXPO_TOKEN" ]; then
+            echo "EXPO_TOKEN secret is not set. Please add it to your repository secrets."
+            exit 1
+          fi
+          echo "Setting up EAS credentials..."
+          # EAS will use the token automatically when available
+          
+      - name: Build Android app
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+        run: |
+          cd mobile-app
+          npx eas-cli build --platform android --non-interactive --profile production
+          
+      - name: Build iOS app (optional)
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+        if: false  # Set to true if you have Apple Developer account and certificates
+        run: |
+          cd mobile-app
+          npx eas-cli build --platform ios --non-interactive --profile production
